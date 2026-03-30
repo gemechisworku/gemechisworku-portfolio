@@ -185,13 +185,15 @@ flowchart TB
 ## Phase 0 — Repository and product baseline
 
 - [ ] Create GitHub repo; connect local `gemechisworku-portfolio` to `origin`.
-- [ ] Add baseline Next.js App Router project (`create-next-app`, TypeScript, ESLint, **Tailwind**, `src/` optional per preference).
-- [ ] Initialize **shadcn/ui** (Tailwind + Radix primitives); add **`motion`** (or Framer Motion), **`next-themes`** (optional), **lucide-react** per **§ UI and interaction engineering**.
-- [ ] Add shared **layout shell** (header/nav, footer placeholder), design tokens, and `prefers-reduced-motion` helper for motion components.
-- [ ] Add `.nvmrc` or `engines` in `package.json` if you want a fixed Node version on Vercel.
+- [x] Add baseline Next.js App Router project (`create-next-app`, TypeScript, ESLint, **Tailwind**, `src/` optional per preference).
+- [x] Initialize **shadcn/ui** (Tailwind + Radix primitives); add **`motion`** (or Framer Motion), **`next-themes`** (optional), **lucide-react** per **§ UI and interaction engineering**.
+- [x] Add shared **layout shell** (header/nav, footer placeholder), design tokens, and `prefers-reduced-motion` helper for motion components.
+- [x] Add `.nvmrc` or `engines` in `package.json` if you want a fixed Node version on Vercel (`.nvmrc` → Node 22).
 - [ ] Confirm `main` is the production branch; enable Vercel project linked to this repo.
 
 **Out of scope for phase 0:** CMS wiring—only a deployable skeleton with **modern UI stack** wired.
+
+**Progress (local):** Landing sections (hero, impact metrics, work bento, stack tabs) and theme toggle are implemented; `npm run build` passes. **Next:** push to GitHub, wire Vercel, then Phase 1 (content model + Decap).
 
 ---
 

@@ -1,0 +1,100 @@
+# Decap CMS — replace YOUR_GITHUB_USERNAME with your GitHub username (or org).
+# Then create a GitHub OAuth App (Developer settings) with callback URL from:
+# https://decapcms.org/docs/github-backend/
+# For local-only editing without GitHub, run: npx decap-server
+# and set local_backend: true below (see Decap local backend docs).
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/gemechisworku-portfolio
+  branch: main
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: experiences
+    label: Experience
+    folder: content/experiences
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Company, name: company, widget: string }
+      - { label: Location, name: location, widget: string }
+      - { label: Start date, name: startDate, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { label: End date, name: endDate, widget: datetime, date_format: YYYY-MM-DD, time_format: false, required: false }
+      - { label: Current role, name: current, widget: boolean, default: false }
+      - { label: Sort order, name: order, widget: number, default: 1 }
+      - label: Bullets
+        name: bullets
+        widget: list
+        field: { label: Point, name: bullet, widget: string }
+
+  - name: projects
+    label: Projects
+    folder: content/projects
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: URL slug, name: slug, widget: string }
+      - { label: Title, name: title, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - label: Technologies
+        name: technologies
+        widget: list
+        field: { label: Tech, name: tech, widget: string }
+      - { label: Association, name: association, widget: string }
+      - { label: Sort order, name: order, widget: number }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - label: Icon
+        name: iconKey
+        widget: select
+        options:
+          - { label: Bot, value: bot }
+          - { label: Network, value: network }
+          - { label: Credit card, value: credit }
+          - { label: Sparkles, value: sparkles }
+          - { label: Database, value: database }
+          - { label: Chart, value: chart }
+          - { label: Container, value: container }
+      - label: Accent
+        name: accent
+        widget: select
+        options:
+          - { label: Violet, value: violet }
+          - { label: Cyan, value: cyan }
+          - { label: Amber, value: amber }
+          - { label: Emerald, value: emerald }
+          - { label: Rose, value: rose }
+          - { label: Slate, value: slate }
+
+  - name: config
+    label: Site config (JSON)
+    files:
+      - label: Profile & contact
+        name: site
+        file: content/site.json
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Role line, name: role, widget: string }
+          - { label: Headline, name: headline, widget: string }
+          - { label: Subheadline, name: subheadline, widget: text }
+          - { label: Location, name: location, widget: string }
+          - { label: Phone, name: phone, widget: string }
+          - { label: Email, name: email, widget: string }
+          - label: Social
+            name: social
+            widget: object
+            fields:
+              - { label: GitHub URL, name: github, widget: string }
+              - { label: LinkedIn URL, name: linkedin, widget: string }
+              - { label: Portfolio URL, name: portfolio, widget: string }
+          - label: Languages
+            name: languages
+            widget: list
+            field: { label: Language, name: language, widget: string }

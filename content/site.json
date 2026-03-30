@@ -1,0 +1,15 @@
+{
+  "name": "Gemechis Worku",
+  "role": "AI Engineer · Data Scientist",
+  "headline": "Production AI & data systems for regulated, high-scale domains.",
+  "subheadline": "Strategic software engineer and data scientist with 4+ years of expertise in AI-driven automation, large-scale FinTech integrations, and full-stack architecture. Proven delivery of LLM-powered workflows, enterprise-grade payment infrastructure (FIS), and scalable data pipelines on GCP and BigQuery — aligning technical systems with business outcomes in banking and logistics.",
+  "location": "Addis Ababa, Ethiopia",
+  "phone": "+251 937 745 414",
+  "email": "game.worku@gmail.com",
+  "social": {
+    "github": "https://github.com/gemechisw",
+    "linkedin": "https://www.linkedin.com/in/gemechisw",
+    "portfolio": "https://gemechisw.vercel.app"
+  },
+  "languages": ["English (Professional)", "Amharic (Native)", "Afaan Oromo (Native)"]
+}

@@ -1,0 +1,39 @@
+{
+  "agents": [
+    "Generative AI & LLMs",
+    "LangChain",
+    "LangGraph",
+    "RAG",
+    "Prompt engineering",
+    "Agentic workflows",
+    "MCP"
+  ],
+  "data": [
+    "Python",
+    "SQL (PostgreSQL, BigQuery, Oracle, MySQL)",
+    "BigQuery ML",
+    "Pandas",
+    "Scikit-learn",
+    "ETL",
+    "Power BI",
+    "Looker Studio",
+    "ZenML",
+    "MLflow"
+  ],
+  "platform": [
+    "FastAPI",
+    "RESTful APIs",
+    "Microservices",
+    "Supabase",
+    "GCP",
+    "AWS",
+    "Azure",
+    "Docker",
+    "CI/CD",
+    "GitHub Actions",
+    "Vercel",
+    "Odoo"
+  ],
+  "productUi": ["React.js", "Next.js", "Vite", "TypeScript", "Tailwind CSS"],
+  "automation": ["n8n", "Zapier", "Python task orchestration"]
+}

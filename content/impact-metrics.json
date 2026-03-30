@@ -1,0 +1,44 @@
+[
+  {
+    "id": "efficiency",
+    "label": "Cross-departmental operational efficiency",
+    "value": "+25%",
+    "hint": "AI-driven project management ecosystem (React & Supabase)",
+    "icon": "trending"
+  },
+  {
+    "id": "compliance",
+    "label": "Regulatory compliance lookup time",
+    "value": "−40%",
+    "hint": "RAG assistant in Odoo over National Bank policies",
+    "icon": "shield"
+  },
+  {
+    "id": "cardless",
+    "label": "Unbanked customers onboarded (cardless)",
+    "value": "500k+",
+    "hint": "Secure REST APIs for Cardless Service",
+    "icon": "users"
+  },
+  {
+    "id": "genai",
+    "label": "Visual consistency (GenAI pipelines)",
+    "value": "+50%",
+    "hint": "Stability AI workflows at BrainBite",
+    "icon": "zap"
+  },
+  {
+    "id": "ops",
+    "label": "Administrative overhead (AidRigs)",
+    "value": "−30%",
+    "hint": "Automated procurement & sales reporting",
+    "icon": "chart"
+  },
+  {
+    "id": "retention",
+    "label": "User retention uplift",
+    "value": "+15%",
+    "hint": "GTM + Analytics-driven UX refinements",
+    "icon": "users"
+  }
+]

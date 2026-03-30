@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gemechis Worku — portfolio
 
-## Getting Started
+Next.js 16 (App Router), Tailwind, shadcn/ui (base-nova), Motion. Site copy and resume data live under [`content/`](content/) and are loaded at build time.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Path | Purpose |
+| --- | --- |
+| [`content/site.json`](content/site.json) | Name, role, headline, contact, social URLs, languages |
+| [`content/impact-metrics.json`](content/impact-metrics.json) | Impact strip |
+| [`content/skills.json`](content/skills.json) | Skills by category |
+| [`content/certifications.json`](content/certifications.json) | Certifications |
+| [`content/education.json`](content/education.json) | Degree |
+| [`content/experiences/*.md`](content/experiences/) | Roles (YAML frontmatter + bullets) |
+| [`content/projects/*.md`](content/projects/) | Projects (frontmatter + optional Markdown body) |
 
-## Learn More
+Project detail pages: `/projects/[slug]` (e.g. `/projects/okr-validator`).
 
-To learn more about Next.js, take a look at the following resources:
+## Decap CMS (admin UI)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **URL:** [http://localhost:3000/admin](http://localhost:3000/admin) (redirects to `/admin/index.html`).
+- **Config:** [`public/admin/config.yml`](public/admin/config.yml).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Before the CMS can commit to GitHub:
 
-## Deploy on Vercel
+1. Replace `YOUR_GITHUB_USERNAME` in `public/admin/config.yml` with your GitHub user or org (must match the repo you deploy).
+2. Follow [Decap’s GitHub backend](https://decapcms.org/docs/github-backend/) to create a GitHub OAuth App and set the Authorization callback URL Decap expects.
+3. Deploy the site on your real domain so OAuth redirects work in production.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For **local editing without OAuth**, use the [Decap local backend](https://decapcms.org/docs/working-with-a-local-git-repository/) (`npx decap-server`) and enable `local_backend: true` in `config.yml` while developing (do not commit `local_backend: true` for production unless you intend to).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Build
+
+```bash
+npm run build
+```

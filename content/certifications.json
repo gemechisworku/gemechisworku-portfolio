@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Fundamentals of Model Context Protocol (MCP)",
+    "issuer": "Hugging Face",
+    "year": "2024"
+  },
+  {
+    "name": "Fundamentals of AI Agents",
+    "issuer": "Hugging Face",
+    "year": "2024"
+  },
+  {
+    "name": "Mastercard Certified Professional in Digital Payments",
+    "issuer": "Mastercard Academy",
+    "year": "2023"
+  },
+  {
+    "name": "Advanced Web Analytics",
+    "issuer": "Simplilearn",
+    "year": "2023"
+  },
+  {
+    "name": "Data Science Program",
+    "issuer": "Simplilearn",
+    "year": "2023"
+  },
+  { "name": "ALX Africa", "issuer": "ALX", "year": "2024" }
+]
