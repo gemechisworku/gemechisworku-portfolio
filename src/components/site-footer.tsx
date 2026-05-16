@@ -52,14 +52,6 @@ export function SiteFooter({ site }: SiteFooterProps) {
               <Share2 className="size-4" />
               LinkedIn
             </Link>
-            <Link
-              href={site.social.portfolio}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium transition hover:bg-accent"
-            >
-              Portfolio
-            </Link>
           </div>
         </div>
         <Separator className="my-8" />

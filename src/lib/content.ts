@@ -2,7 +2,6 @@ import "server-only";
 
 import fs from "node:fs";
 import path from "node:path";
-import { cache } from "react";
 import matter from "gray-matter";
 import { z } from "zod";
 
@@ -55,14 +54,24 @@ const educationSchema = z.object({
   focus: z.string(),
 });
 
+/** YAML parsers often turn `2022-09-01` into a Date; Zod expects strings for formatting. */
+function yamlDateToDateString(val: unknown): string | undefined {
+  if (val === null || val === undefined || val === "") return undefined;
+  if (val instanceof Date) return val.toISOString().slice(0, 10);
+  if (typeof val === "string") return val === "" ? undefined : val;
+  return String(val);
+}
+
 const experienceFrontmatterSchema = z.object({
   title: z.string(),
   company: z.string(),
   location: z.string(),
-  startDate: z.string(),
+  startDate: z.preprocess(
+    (val) => yamlDateToDateString(val) ?? "",
+    z.string().min(1),
+  ),
   endDate: z
-    .union([z.string(), z.literal("")])
-    .optional()
+    .preprocess((val) => yamlDateToDateString(val), z.string().optional())
     .transform((v) => (v === "" ? undefined : v)),
   current: z.boolean(),
   order: z.number(),
@@ -107,6 +116,39 @@ const projectFrontmatterSchema = z.object({
     "container",
   ]),
   accent: z.enum(["violet", "cyan", "amber", "emerald", "rose", "slate"]),
+  /** Paths under `public/` (e.g. `/projects/slug/1.png`) or absolute image URLs */
+  screenshots: z.preprocess(
+    (val) => {
+      if (!val || !Array.isArray(val)) return [];
+      return val.map((item) =>
+        typeof item === "string"
+          ? item
+          : (item as { path?: string; url?: string; image?: string }).path ??
+            (item as { path?: string; url?: string }).url ??
+            (item as { image?: string }).image ??
+            String(item),
+      );
+    },
+    z.array(z.string()),
+  ),
+  /** Optional card thumbnail; defaults to first screenshot if omitted */
+  coverImage: z
+    .preprocess(
+      (v) => (v === "" || v === null || v === undefined ? undefined : v),
+      z.string().optional(),
+    ),
+  liveUrl: z.preprocess(
+    (v) => (v === "" || v === null || v === undefined ? undefined : v),
+    z.string().url().optional(),
+  ),
+  repoUrl: z.preprocess(
+    (v) => (v === "" || v === null || v === undefined ? undefined : v),
+    z.string().url().optional(),
+  ),
+  videoUrl: z.preprocess(
+    (v) => (v === "" || v === null || v === undefined ? undefined : v),
+    z.string().url().optional(),
+  ),
 });
 
 export type SiteContent = z.infer<typeof siteSchema>;
@@ -121,37 +163,37 @@ export type ProjectEntry = z.infer<typeof projectFrontmatterSchema> & {
   body: string;
 };
 
-export const getSite = cache(async (): Promise<SiteContent> => {
+export async function getSite(): Promise<SiteContent> {
   const raw = fs.readFileSync(path.join(contentDir, "site.json"), "utf8");
   return siteSchema.parse(JSON.parse(raw));
-});
+}
 
-export const getImpactMetrics = cache(async (): Promise<ImpactMetric[]> => {
+export async function getImpactMetrics(): Promise<ImpactMetric[]> {
   const raw = fs.readFileSync(
     path.join(contentDir, "impact-metrics.json"),
     "utf8",
   );
   const data = JSON.parse(raw) as unknown;
   return z.array(impactMetricSchema).parse(data);
-});
+}
 
-export const getSkills = cache(async (): Promise<SkillsContent> => {
+export async function getSkills(): Promise<SkillsContent> {
   const raw = fs.readFileSync(path.join(contentDir, "skills.json"), "utf8");
   return skillsSchema.parse(JSON.parse(raw));
-});
+}
 
-export const getCertifications = cache(async (): Promise<Certification[]> => {
+export async function getCertifications(): Promise<Certification[]> {
   const raw = fs.readFileSync(
     path.join(contentDir, "certifications.json"),
     "utf8",
   );
   return z.array(certificationSchema).parse(JSON.parse(raw));
-});
+}
 
-export const getEducation = cache(async (): Promise<Education> => {
+export async function getEducation(): Promise<Education> {
   const raw = fs.readFileSync(path.join(contentDir, "education.json"), "utf8");
   return educationSchema.parse(JSON.parse(raw));
-});
+}
 
 function readMarkdownDir<T>(
   subdir: string,
@@ -171,16 +213,16 @@ function readMarkdownDir<T>(
   return out;
 }
 
-export const getExperiences = cache(async (): Promise<ExperienceEntry[]> => {
+export async function getExperiences(): Promise<ExperienceEntry[]> {
   const list = readMarkdownDir(
     "experiences",
     experienceFrontmatterSchema,
     (id) => id,
   );
   return list.sort((a, b) => a.order - b.order);
-});
+}
 
-export const getProjects = cache(async (): Promise<ProjectEntry[]> => {
+export async function getProjects(): Promise<ProjectEntry[]> {
   const dir = path.join(contentDir, "projects");
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(".md"));
   const out: ProjectEntry[] = [];
@@ -192,11 +234,11 @@ export const getProjects = cache(async (): Promise<ProjectEntry[]> => {
     out.push({ ...parsed, body: content.trim() });
   }
   return out.sort((a, b) => a.order - b.order);
-});
+}
 
-export const getProjectBySlug = cache(
-  async (slug: string): Promise<ProjectEntry | null> => {
-    const projects = await getProjects();
-    return projects.find((p) => p.slug === slug) ?? null;
-  },
-);
+export async function getProjectBySlug(
+  slug: string,
+): Promise<ProjectEntry | null> {
+  const projects = await getProjects();
+  return projects.find((p) => p.slug === slug) ?? null;
+}

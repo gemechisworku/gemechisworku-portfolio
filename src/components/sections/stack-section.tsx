@@ -36,9 +36,8 @@ export function StackSection({ skills }: StackSectionProps) {
             Tools & surfaces
           </h2>
           <p className="text-muted-foreground mt-3 max-w-2xl text-lg">
-            Representative skills from your CV — edit in{" "}
-            <code className="text-foreground text-sm">content/skills.json</code>{" "}
-            or via Decap when configured.
+            A cross-section of tools I use across agents, data engineering,
+            platform delivery, and product UI — browse by category.
           </p>
         </motion.div>
         <motion.div

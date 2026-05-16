@@ -38,7 +38,7 @@ export function HeroSection({ role, headline, subheadline }: HeroSectionProps) {
             <Sparkles className="size-3.5" />
             {role}
           </Badge>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl md:leading-[1.1]">
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl md:leading-[1.1]">
             {headline}
           </h1>
           <p className="text-muted-foreground mt-6 max-w-3xl text-lg leading-relaxed sm:text-xl">

@@ -6,8 +6,8 @@
     "portfolio": "https://gemechisw.vercel.app"
   },
   "phone": "+251 937 745 414",
-  "subheadline": "AI Engineer and Forward Deployed Engineer specializing in production-grade LLM systems, agentic AI architectures, RAG pipelines, and enterprise AI automation. Experienced in building intelligent workflows, semantic retrieval systems, multi-agent platforms, and scalable data pipelines using Python, LangChain, FastAPI, BigQuery, and cloud-native technologies. Proven track record delivering enterprise AI and financial infrastructure solutions across banking, and logistics, including payment switch integrations, AI-powered compliance systems, document intelligence platforms, and automation frameworks that drive measurable operational impact.\nLocation: Addis Ababa, Ethiopia",
-  "headline": "Production AI & data systems for regulated, high-scale domains.",
+  "subheadline": "AI Engineer and Forward Deployed Engineer specializing in production-grade LLM systems, agentic AI architectures, RAG pipelines, and enterprise AI automation. Experienced in building intelligent workflows, semantic retrieval systems, multi-agent platforms, and scalable data pipelines using Python, LangChain, FastAPI, BigQuery, and cloud-native technologies. Proven track record delivering enterprise AI and financial infrastructure solutions across banking, and logistics, including payment switch integrations, AI-powered compliance systems, document intelligence platforms, and automation frameworks that drive measurable operational impact.",
+  "headline": "I build reliable production AI systems for regulated domains",
   "location": "Addis Ababa, Ethiopia",
   "role": "AI Engineer · Data Scientist",
   "languages": [

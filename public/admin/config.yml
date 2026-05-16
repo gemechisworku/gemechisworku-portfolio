@@ -3,10 +3,11 @@
 # https://decapcms.org/docs/github-backend/
 # For local-only editing without GitHub, run: npx decap-server
 # and set local_backend: true below (see Decap local backend docs).
-
+local_backend: true
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/gemechisworku-portfolio
+  # Must be "owner/repo", not just the repo name — or GitHub API returns 404 and the browser shows CORS errors.
+  repo: gemechisworku/gemechisworku-portfolio
   branch: main
 
 media_folder: public/uploads
@@ -72,6 +73,25 @@ collections:
           - { label: Emerald, value: emerald }
           - { label: Rose, value: rose }
           - { label: Slate, value: slate }
+      - label: Screenshots (paths like /projects/slug/1.png or full image URLs)
+        name: screenshots
+        widget: list
+        required: false
+        field: { label: Path or URL, name: path, widget: string }
+      - {
+          label: Card cover image (optional; defaults to first screenshot),
+          name: coverImage,
+          widget: string,
+          required: false,
+        }
+      - { label: Live app URL, name: liveUrl, widget: string, required: false }
+      - { label: GitHub URL, name: repoUrl, widget: string, required: false }
+      - {
+          label: YouTube video URL (watch, embed, Shorts, or youtu.be),
+          name: videoUrl,
+          widget: string,
+          required: false,
+        }
 
   - name: config
     label: Site config (JSON)
@@ -93,7 +113,6 @@ collections:
             fields:
               - { label: GitHub URL, name: github, widget: string }
               - { label: LinkedIn URL, name: linkedin, widget: string }
-              - { label: Portfolio URL, name: portfolio, widget: string }
           - label: Languages
             name: languages
             widget: list

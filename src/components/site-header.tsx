@@ -65,21 +65,9 @@ export function SiteHeader() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: reduce ? 0 : 0.05 * nav.length, duration: 0.35 }}
           >
-            <Link
-              href="/admin"
-              className="text-primary rounded-md px-2.5 py-2 text-sm font-medium hover:underline"
-            >
-              Admin
-            </Link>
           </motion.div>
         </nav>
         <div className="flex shrink-0 items-center gap-1">
-          <Link
-            href="/admin"
-            className="text-primary hover:bg-accent rounded-md px-2 py-1.5 text-xs font-medium lg:hidden"
-          >
-            CMS
-          </Link>
           <Button
             variant="outline"
             size="icon"

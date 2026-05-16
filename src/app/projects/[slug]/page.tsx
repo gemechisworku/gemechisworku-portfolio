@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { Badge } from "@/components/ui/badge";
 import { getProjects, getProjectBySlug } from "@/lib/content";
+import { ProjectMedia } from "@/components/projects/project-media";
 import { ArrowLeft } from "lucide-react";
 
 type PageProps = {
@@ -51,8 +52,20 @@ export default async function ProjectPage({ params }: PageProps) {
           </Badge>
         ))}
       </div>
+
+      <ProjectMedia
+        title={project.title}
+        screenshots={project.screenshots}
+        liveUrl={project.liveUrl}
+        repoUrl={project.repoUrl}
+        videoUrl={project.videoUrl}
+      />
+
       {project.body ? (
         <div className="text-muted-foreground mt-10 space-y-4 text-base leading-relaxed [&_p]:leading-relaxed">
+          <h2 className="text-foreground mb-4 text-sm font-semibold tracking-wide uppercase">
+            Overview
+          </h2>
           <ReactMarkdown>{project.body}</ReactMarkdown>
         </div>
       ) : null}

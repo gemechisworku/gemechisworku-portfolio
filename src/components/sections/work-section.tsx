@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import {
@@ -20,6 +21,8 @@ import {
   BarChart3,
   Container,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { normalizeImageUrlForEmbed } from "@/lib/image-url";
 
 const iconMap = {
   bot: Bot,
@@ -48,6 +51,8 @@ export type ProjectCard = {
   association: string;
   iconKey: keyof typeof iconMap;
   accent: keyof typeof accentMap;
+  /** Local path (`/...`) or external image URL for card cover */
+  thumbnailUrl?: string;
 };
 
 type WorkSectionProps = {
@@ -73,9 +78,9 @@ export function WorkSection({ projects }: WorkSectionProps) {
             Selected work
           </h2>
           <p className="text-muted-foreground mt-3 max-w-2xl text-lg">
-            Enterprise AI, data platforms, and ML pipelines — detail pages can be
-            wired next; content is Markdown under{" "}
-            <code className="text-foreground text-sm">content/projects</code>.
+            Enterprise AI, agentic systems, data platforms, and ML pipelines —
+            from regulatory RAG and innovation tooling to analytics and MLOps.
+            Open a card for a short case-style write-up.
           </p>
         </motion.div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -95,9 +100,23 @@ export function WorkSection({ projects }: WorkSectionProps) {
                   className="group block h-full"
                 >
                   <Card className="relative h-full overflow-hidden border-border/80 transition duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-lg">
-                    <div
-                      className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accent} opacity-0 transition group-hover:opacity-100`}
-                    />
+                    {p.thumbnailUrl ? (
+                      <div className="bg-muted relative aspect-video w-full overflow-hidden">
+                        <ThumbnailImage
+                          src={p.thumbnailUrl}
+                          alt={p.title}
+                          className="transition duration-300 group-hover:scale-[1.02]"
+                        />
+                        <div
+                          className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60`}
+                        />
+                      </div>
+                    ) : null}
+                    {!p.thumbnailUrl ? (
+                      <div
+                        className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accent} opacity-0 transition group-hover:opacity-100`}
+                      />
+                    ) : null}
                     <CardHeader className="relative">
                       <div className="mb-2 flex items-start justify-between gap-2">
                         <div className="bg-background/80 inline-flex size-10 items-center justify-center rounded-xl border shadow-sm backdrop-blur">
@@ -134,5 +153,38 @@ export function WorkSection({ projects }: WorkSectionProps) {
         </div>
       </div>
     </section>
+  );
+}
+
+function ThumbnailImage({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  const resolved = normalizeImageUrlForEmbed(src);
+  const local = resolved.startsWith("/");
+  if (local) {
+    return (
+      <Image
+        src={resolved}
+        alt={alt}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className={cn("object-cover", className)}
+      />
+    );
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- external thumbnails
+    <img
+      src={resolved}
+      alt={alt}
+      className={cn("size-full object-cover", className)}
+      referrerPolicy="no-referrer"
+    />
   );
 }

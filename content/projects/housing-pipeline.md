@@ -12,6 +12,8 @@ order: 6
 featured: false
 iconKey: container
 accent: slate
+screenshots:
+  - https://drive.google.com/file/d/1C1NhoeqxEjHVFkealFEhFEiRLSsXCCwz/view?usp=sharing
 ---
 
 Demonstrates MLOps basics: container builds, deployment, and repeatable releases.

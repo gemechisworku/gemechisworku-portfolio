@@ -41,6 +41,7 @@ export default async function Home() {
     association: p.association,
     iconKey: p.iconKey,
     accent: p.accent,
+    thumbnailUrl: p.coverImage ?? p.screenshots[0],
   }));
 
   return (

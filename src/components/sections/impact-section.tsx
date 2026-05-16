@@ -42,8 +42,8 @@ export function ImpactSection({ metrics }: ImpactSectionProps) {
             Outcomes from production delivery
           </h2>
           <p className="text-muted-foreground mt-3 max-w-2xl text-lg">
-            Quantified highlights across banking, logistics, and GenAI — driven
-            from content files (editable in the CMS when GitHub is configured).
+            Quantified results from banking, logistics, and GenAI work — each tied
+            to a concrete business or operational outcome.
           </p>
         </motion.div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

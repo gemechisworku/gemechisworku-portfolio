@@ -12,6 +12,8 @@ order: 4
 featured: false
 iconKey: database
 accent: emerald
+screenshots:
+  - https://drive.google.com/file/d/1WooIczBlqECLbypzaFpw_JiemYtUQLhc/view?usp=sharing
 ---
 
 Executive-facing analytics on global automotive sales and pricing.
